@@ -30,10 +30,14 @@ public class MainActivity extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
-            Log.e("orientation show","Landscape");
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.containner,new MainFragment())
+                    .commit();
         }
         else {
-            Log.e("orientation show","Landscape");
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.containner,new MainFragment())
+                    .commit();
         }
     }
 
