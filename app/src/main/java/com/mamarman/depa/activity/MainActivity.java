@@ -1,10 +1,10 @@
 package com.mamarman.depa.activity;
 
 
-import android.content.res.Configuration;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
 
 
 import com.mamarman.depa.R;
@@ -25,24 +25,6 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
     }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.containner,new MainFragment())
-                    .commit();
-        }
-        else {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.containner,new MainFragment())
-                    .commit();
-        }
-    }
-
-
-
 
 
 }

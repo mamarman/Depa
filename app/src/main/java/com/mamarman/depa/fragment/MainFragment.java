@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.mamarman.depa.R;
@@ -25,7 +27,8 @@ import com.mamarman.depa.activity.MainActivity;
 
 public class MainFragment  extends Fragment{
 
-    WebView webView;
+   private WebView webView;
+
     String url = "https://www.depadigitalworkforce.com/";
 
 
@@ -48,12 +51,30 @@ public class MainFragment  extends Fragment{
 
         webView = (WebView) rootView.findViewById(R.id.webViewdepa);
 
-        webView.loadUrl(url);
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+
+        if (savedInstanceState == null){
+            webView.loadUrl(url);
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setSupportZoom(true);
+            webSettings.setDisplayZoomControls(false);
+        }
+
 
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        webView.saveState(outState);
+    }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null){
+            webView.restoreState(savedInstanceState);
+        }
+    }
 }
