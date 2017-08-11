@@ -4,7 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    <ImageView
+        android:id="@+id/img_depa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/depa_img"/>
     <WebView
         android:id="@+id/webViewdepa"
         android:layout_width="match_parent"

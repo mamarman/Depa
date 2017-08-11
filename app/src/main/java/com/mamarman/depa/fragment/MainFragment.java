@@ -11,10 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -28,6 +31,7 @@ import com.mamarman.depa.activity.MainActivity;
 public class MainFragment  extends Fragment{
 
    private WebView webView;
+    ImageView imageDepa;
 
     String url = "https://www.depadigitalworkforce.com/";
 
@@ -50,7 +54,9 @@ public class MainFragment  extends Fragment{
     private void initInstances(View rootView, Bundle savedInstanceState) {
 
         webView = (WebView) rootView.findViewById(R.id.webViewdepa);
-
+        imageDepa = (ImageView)rootView.findViewById(R.id.webViewdepa);
+        Animation animation = AnimationUtils.loadAnimation
+                (getActivity(),R.anim.animfade_out);
 
         if (!DetectConnection.chackInternetConnettion(getContext())){
             Toast.makeText(getActivity()
@@ -58,6 +64,7 @@ public class MainFragment  extends Fragment{
         }
         else {
             if (savedInstanceState == null){
+                imageDepa.startAnimation(animation);
                 webView.loadUrl(url);
                 webView.clearHistory();
                 webView.clearCache(true);
