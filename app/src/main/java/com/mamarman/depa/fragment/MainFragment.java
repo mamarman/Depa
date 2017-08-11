@@ -52,15 +52,21 @@ public class MainFragment  extends Fragment{
         webView = (WebView) rootView.findViewById(R.id.webViewdepa);
 
 
-        if (savedInstanceState == null){
-            webView.loadUrl(url);
-            WebSettings webSettings = webView.getSettings();
-            webSettings.setJavaScriptEnabled(true);
-            webSettings.setSupportZoom(true);
-            webSettings.setDisplayZoomControls(false);
+        if (!DetectConnection.chackInternetConnettion(getContext())){
+            Toast.makeText(getActivity()
+                    ,"No internet",Toast.LENGTH_LONG).show();
         }
-
-
+        else {
+            if (savedInstanceState == null){
+                webView.loadUrl(url);
+                webView.clearHistory();
+                webView.clearCache(true);
+                WebSettings webSettings = webView.getSettings();
+                webSettings.setJavaScriptEnabled(true);
+                webSettings.setSupportZoom(true);
+                webSettings.setDisplayZoomControls(false);
+            }
+        }
     }
 
     @Override
