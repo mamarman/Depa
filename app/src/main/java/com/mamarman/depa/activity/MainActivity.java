@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 
 import com.mamarman.depa.R;
+import com.mamarman.depa.fragment.DetectConnection;
+import com.mamarman.depa.fragment.InterLostFragment;
 import com.mamarman.depa.fragment.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,11 +21,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.containner,new MainFragment())
-                    .commit();
-        }
+            if (savedInstanceState == null){
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.containner,new MainFragment())
+                        .commit();
+            }
+
+
     }
 
 

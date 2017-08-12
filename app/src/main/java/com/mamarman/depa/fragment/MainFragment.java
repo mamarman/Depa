@@ -2,6 +2,7 @@ package com.mamarman.depa.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.mamarman.depa.R;
+import com.mamarman.depa.activity.LostinternetActivity;
 import com.mamarman.depa.activity.MainActivity;
 
 /**
@@ -67,25 +69,27 @@ public class MainFragment  extends Fragment{
             @Override
             public void onRefresh() {
                 if (!DetectConnection.chackInternetConnettion(getContext())){
-                    Toast.makeText(getActivity()
-                            ,"No internet",Toast.LENGTH_LONG).show();
                     swipeRefresh.setRefreshing(false);
+                    Intent intent = new Intent(getContext(), LostinternetActivity.class);
+                    startActivity(intent);
+
                 }
                 else if (DetectConnection.chackInternetConnettion(getContext())){
                     Webload();
                     swipeRefresh.setRefreshing(false);
                 }
+
             }
         });
 
         if (!DetectConnection.chackInternetConnettion(getContext())){
-            Toast.makeText(getActivity()
-                    ,"No internet",Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(getContext(), LostinternetActivity.class);
+            startActivity(intent);
             }
         else {
             if (savedInstanceState == null){
                 imageDepa.startAnimation(animation);
-
                 Webload();
             }
         }
@@ -114,5 +118,6 @@ public class MainFragment  extends Fragment{
             webView.restoreState(savedInstanceState);
         }
     }
+
 
 }
